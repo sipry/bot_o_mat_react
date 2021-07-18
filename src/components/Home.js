@@ -1,12 +1,11 @@
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import React, { useRef } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import welcome_robot from './animations/welcome_robot.json'
 import Lottie from "lottie-react";
-
 
 
 const useStyles = makeStyles((theme) => ({
@@ -38,9 +37,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Home({ robot }) {
+export default function Home() {
     const classes = useStyles();
-    const container = useRef(null)
 
     return (
         <div className={classes.root}>
@@ -52,7 +50,7 @@ export default function Home({ robot }) {
                                 Welcome to robotic fields!
                             </Typography>
                             <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
-                                Let a robot help you with some task.
+                                Let a robot help you with some tasks.
                             </Typography>
                             <Button onClick={() => { window.location.href = "/create" }} className={classes.btn} variant="contained" color="secondary">
                                 Create

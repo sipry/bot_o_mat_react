@@ -1,14 +1,14 @@
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Progress from './Progress'
 import DoneProgress from './DoneProgress';
 import Simplemodal from './Modal';
 import Lottie from "lottie-react";
-// eslint-disable-next-line
+// animations
 import aeronautical from './animations/aeronautical.json';
 import unipedal from './animations/unipedal.json';
 import bipedal from './animations/bipedal.json';
@@ -56,12 +56,11 @@ export default function Task({ match: { params: { id } } }) {
         }
     }, [robot])
 
-// Crea el robot
     useEffect(() => {
         fetchRobot();
     }, [])
 
-// Hace el GET del robot especifico
+    // GET del robot especifico
     const fetchRobot = () => {
         fetch(`http://127.0.0.1:8000/robots/${id}/`).then(response => {
             return response.json();
@@ -70,7 +69,7 @@ export default function Task({ match: { params: { id } } }) {
         });
     }
 
-// muestra las barras azules mientras hace la tarea, muestra la barra verde cuando termina
+    // muestra la barra azul mientras hace la tarea, muestra la barra verde cuando termina
     function handleChange(i) {
         setShow((old_show) => {
             let new_array = [...old_show]
@@ -79,16 +78,16 @@ export default function Task({ match: { params: { id } } }) {
         })
     }
 
-// ejecuta la funcion despues de cierto perido de tiempo (tiempo que tiene que tardar para cada tarea)
+    // ejecuta la funcion despues de cierto perido de tiempo (tiempo que tiene que tardar en cada tarea)
     function handleTask(time, i) {
         setTimeout(() => { handleChange(i) }, time)
     }
 
-// verifica si todas las tareas estan realizadas
+    // verifica si todas las tareas estan realizadas
     function checkShow(show) {
         return show === false
     }
-    
+
     return (
         <div className={classes.root}>
             <Grid container className={classes.grid}>
@@ -97,7 +96,7 @@ export default function Task({ match: { params: { id } } }) {
                         {robot ?
                             <>
                                 <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
-                                    Let see what <span className={classes.color}>{robot.name}</span> can do for you.
+                                    Relax, <span className={classes.color}>{robot.name}</span> is doing everything for you.
                                 </Typography>
                                 {show.every(checkShow) ? <Simplemodal /> : null}
                             </>

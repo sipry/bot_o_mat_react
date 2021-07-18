@@ -70,7 +70,7 @@ export default function Navbar(props) {
                         <img src="https://img.icons8.com/bubbles/50/000000/robot.png"/>
                     </div>
                     <Link onClick={() => {window.location.href="/"}} className={classes.appbar_link}>Home</Link>
-                    <Link onClick={() => {window.location.href="/"}} className={classes.appbar_link}>Robots</Link>
+                    <Link onClick={() => {window.location.href="/robotList"}} className={classes.appbar_link}>Robots</Link>
                      
                 </Toolbar>
             </AppBar>

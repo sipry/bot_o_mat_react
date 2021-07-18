@@ -9,7 +9,10 @@ import Done from './Done';
 
 const useStyles = makeStyles((theme) => ({
     title: {
-        fontSize: 40,
+        fontSize: 30,
+    },
+    text: {
+        fontSize: 20,
     },
     grid: {
         justifyContent: 'center',
@@ -60,6 +63,9 @@ export default function Simplemodal() {
                     >
 
                         <Typography className={classes.title} color="textSecondary" gutterBottom>
+                            All the tasks are finished!
+                        </Typography>
+                        <Typography className={classes.text} color="textSecondary" gutterBottom>
                             Have a good day!
                         </Typography>
                         <div>

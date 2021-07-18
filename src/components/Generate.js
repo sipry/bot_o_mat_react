@@ -1,18 +1,19 @@
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import React, { useEffect, useState, useRef } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Lottie from "lottie-react";
-// eslint-disable-next-line
+// animations
 import aeronautical from './animations/aeronautical.json';
 import unipedal from './animations/unipedal.json';
 import bipedal from './animations/bipedal.json';
 import quadrupedal from './animations/quadrupedal.json';
 import arachnid from './animations/arachnid.json';
 import radial from './animations/radial.json';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,7 +55,7 @@ export default function Generate() {
     generateRobot();
   }, [])
 
-  // generate the random robot with random tasks
+  // generate random robot name with random tasks
   let names = ['Lary', 'Marcia', 'Sim', 'Ucar', 'Olive', 'Sofia', 'Samy', 'Yaya'];
   async function generateRobot() {
     var random_name = names[Math.floor(Math.random() * names.length)];
@@ -87,13 +88,13 @@ export default function Generate() {
       <Grid container className={classes.grid}>
         <Grid item xs={12} sm={6}>
           <Paper className={classes.paper}>
-            {robot ?
+            {robot.id ?
               <>
                 <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
-                  Awsome
+                  Awsome you got a <span className={classes.color}> {robot.type.name}</span> robot!
                 </Typography>
                 <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
-                  You'r robot name is <span className={classes.color}>{robot.name}</span>!
+                  You'r robot name is <span className={classes.color}>{robot.name}</span>.
                 </Typography>
                 <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
                   Press start to give <span className={classes.color}>{robot.name} </span> some tasks.
@@ -109,7 +110,7 @@ export default function Generate() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <Paper className={classes.paper}>
-            {robot ?
+            {robot.id ?
 
               < div className={classes.img}>
                 <Lottie animationData={animationData} />
@@ -123,5 +124,4 @@ export default function Generate() {
       </Grid>
     </div>
   );
-
 }

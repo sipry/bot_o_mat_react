@@ -1,15 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-nav{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  min-height: 10vh;
-  background: rgb(73, 79, 82);
-  color: white;
-  font-family: 'Press Start 2P', cursive;
-}
-
 .MuiLinearProgress-root, .MuiLinearProgress-colorPrimary, .MuiLinearProgress-buffer{
   display: inline-block;
   width: 50%;

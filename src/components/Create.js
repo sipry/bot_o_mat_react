@@ -1,7 +1,7 @@
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Lottie from "lottie-react";
@@ -57,8 +57,10 @@ export default function Create() {
     const [robot, setRobot] = useState({});
     const [robot_name, setInput] = useState('');
     const [type_id, settype_select] = React.useState(1);
+    let bol = false
 
-    // Hace el POST del robot
+
+    // POST request
     async function createRobot() {
         const values = { name: robot_name, type: type_id }
         const response = await fetch('http://127.0.0.1:8000/robots/', {
@@ -72,7 +74,7 @@ export default function Create() {
         fetchRobots(data.id);
     };
 
-    // Hace el get del robot paa pasarle el id al task
+    // Hace el get del robot para pasarle el id al task
     const fetchRobots = async (id) => {
         const response = await fetch(`http://127.0.0.1:8000/robots/${id}/`)
         const robot = await response.json()
@@ -111,15 +113,23 @@ export default function Create() {
     const handleChange = (event) => {
         settype_select(event.target.value);
     };
-
-
+  
     return (
         <div className={classes.root}>
             <Grid container className={classes.grid}>
                 <Grid item xs={12} sm={6}>
                     <Paper className={classes.paper}>
                         <div>
-                            <TextField className={classes.TextField} id="name" onInput={e => setInput(e.target.value)} value={robot_name} label="Robot name" color="secondary" />
+                            <TextField
+                                className={classes.TextField}
+                                name="Robot name"
+                                {...robot_name === "" ? bol=true : bol=false}
+                                error = {bol}
+                                helperText={robot_name === "" ? 'This field is required' : ' '}
+                                onInput={e => setInput(e.target.value)}
+                                value={robot_name}
+                                label="Robot name"
+                                color="secondary" />
                             <TextField
                                 className={classes.TextField}
                                 id="sleect robot type"
